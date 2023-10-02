@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BookController extends Controller
 {
@@ -22,7 +23,9 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::paginate(5);
-        // $books = $this->book->all();
+        $title = 'Delete Book!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('book.index', compact('books'));
     }
 

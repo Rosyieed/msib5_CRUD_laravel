@@ -33,12 +33,8 @@
                         <div class="btn-group" role="group">
                             <a href="{{ route('books.edit', $book->book_id) }}" class="btn text-white"
                                 style="background-color: rgb(49, 211, 0)"><i class="bi bi-subtract me-2"></i>Edit</a>
-                            <form action="{{ route('books.destroy', $book->book_id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn text-white delete" style="background-color: rgb(211, 18, 0)"
-                                    type="submit"><i class="bi bi-trash me-2"></i>Delete</button>
-                            </form>
+                            <a href="{{ route('books.destroy', $book->book_id) }}" class="btn btn-danger"
+                                data-confirm-delete="true"><i class="bi bi-trash me-2"></i>Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -46,4 +42,5 @@
         </table>
         {{ $books->links() }}
     </div>
+    @include('sweetalert::alert')
 @endsection
